@@ -2,7 +2,7 @@
 export PATH=$PATH:.
 #export PATH=$PATH:~/.dotfiles/scripts
 
-#Brew
+# Brew
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 
