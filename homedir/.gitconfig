@@ -1,9 +1,10 @@
 [user]
-  name = GITHUBFULLNAME
-  email = GITHUBEMAIL
+  name = Voo Sierra
+  email = anybucket@gmail.com
+	signingkey = 2273568DBCE479EC
 [github]
   # https://github.com/blog/180-local-github-config
-  user = GITHUBUSER
+  user = baseboxorg
 [color]
 # ui = true is a superset of all the more specific color options
 #  as documented at http://book.git-scm.com/5_customizing_git.html
@@ -180,7 +181,7 @@
 
 [credential]
     # cache creds (git help credential-cache)
-  helper = cache
+	helper = osxkeychain
 
 [filter "tabspace"]
   clean = expand -t 4
@@ -198,3 +199,5 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+[commit]
+	gpgsign = true
