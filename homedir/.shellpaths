@@ -17,7 +17,7 @@ export PATH=/usr/local/bin:$PATH
 
 
 # Brew LLVM using clang or gcc PATH
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+#export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # If not using PATH
 #export CC := clang
