@@ -1036,6 +1036,7 @@ defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false;ok
 
 killall cfprefsd
 
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################

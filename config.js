@@ -57,12 +57,13 @@ module.exports = {
     'micro-snitch',
     //'macvim',
     'sizeup',
+    //'sublime-text',
     //'sketchup',
     // 'slack',
     // 'the-unarchiver',
     //'torbrowser',
     //'transmission',
-    //'vlc',
+    'vlc',
     'xquartz'
   ],
   gem: [
