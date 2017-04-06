@@ -93,4 +93,175 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 
 alias vtop="vtop --theme wizard"
 
-alias a=atom
+## my own
+alias a='atom'
+alias coda='c'
+
+# ---- FANCY DOTFILES-IMPORTED ALIASES ----------------
+
+# Gzip-enabled `curl`
+alias gurl='curl --compressed'
+
+# Get week number
+alias week='date +%V'
+
+# Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+alias update='sudo softwareupdate -i -a; npm update npm -g; gem update --system'
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en1"
+alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
+
+# Enhanced WHOIS lookups
+alias whois="whois -h whois-servers.net"
+
+# Flush Directory Service cache
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+
+alias brews="brew update && brew upgrade && brew cask update && brew cleanup && brew doctor"
+alias gem_update="gem update –system"
+
+# Clean up LaunchServices to remove duplicates in the “Open With” menu
+alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+# Empty the Trash on all mounted volumes and the main HDD
+# Also, clear Apple’s System Logs to improve shell startup speed
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+# Merge PDF files
+# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
+alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+
+# Disable Spotlight
+alias spotoff="sudo mdutil -a -i off"
+# Enable Spotlight
+alias spoton="sudo mdutil -a -i on"
+
+
+# ------------------------------------
+# Docker alias and function
+# ------------------------------------
+
+alias d='docker $*'
+alias dc='docker-compose $*'
+alias dm='docker-machine $*'
+
+
+# Get latest container ID
+alias dl="docker ps -l -q"
+
+# Get container process
+alias dps="docker ps"
+
+# Get process included stop container
+alias dpa="docker ps -a"
+
+# Get images
+alias di="docker images"
+
+# Get container IP
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+# Run deamonized container, e.g., $dkd base /bin/echo hello
+alias dkd="docker run -d -P"
+
+# Run interactive container, e.g., $dki base /bin/bash
+alias dki="docker run -i -t -P"
+
+# Execute interactive container, e.g., $dex base /bin/bash
+alias dex="docker exec -i -t"
+
+# Stop all containers
+dstop() { docker stop $(docker ps -a -q); }
+
+# Remove all containers
+drm() { docker rm $(docker ps -a -q); }
+
+# Stop and Remove all containers
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
+# Remove all images
+dri() { docker rmi $(docker images -q); }
+
+# Dockerfile build, e.g., $dbu tcnksm/test
+dbu() { docker build -t=$1 .; }
+
+# Show all alias related docker
+dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
+# Convert docker-machine commands to aliases directly
+alias dmactive="docker-machine active"
+alias dmcreate="docker-machine create"
+alias dmconfig="docker-machine config"
+alias dminspect="docker-machine inspect"
+alias dmip="docker-machine ip"
+alias dmkill="docker-machine kill"
+alias dmls="docker-machine ls"
+alias dmregenerate-certs="docker-machine regenerate-certs"
+alias dmrestart="docker-machine restart"
+alias dmrm="docker-machine rm"
+alias dmenv="docker-machine env"
+alias dmssh="docker-machine ssh"
+alias dmstart="docker-machine start"
+alias dmstop="docker-machine stop"
+alias dmupgrade="docker-machine upgrade"
+alias dmurl="docker-machine url"
+alias dmhelp="docker-machine help"
+
+# customized aliases
+
+# list all docker processes included stop containers.
+alias dpa="docker ps -a"
+
+# list all untagged images (dangling)
+alias dangline="docker images -f "dangling=true" -q"
+
+# get dockerfile from image
+
+# Usages: dfimage <image> [-f], example: dfimage nginx
+alias dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm centurylink/dockerfile-from-image"
+
+# list images and merge with tags
+alias dit="docker images |awk 'NR==1{l=length(\$0)}{printf \"%-20s %-20s %-20s\t%s:%s\n\",substr(\$0,l-51,20),substr(\$0,l-31,20),substr(\$0,l-11),\$1,\$2}'"
+
+# run jq via container. So you can run all commands in http://stedolan.github.io/jq/tutorial/ as normal, just replace jq with djq
+
+# example: curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=5' |djq '.[0] | {message: .commit.message, name: .commit.committer.name}'
+alias djq='docker run --rm ryfow/jq'
+
+# list the last container id
+alias dl='docker ps -l -q'
+
+# Vagrant
+alias v='vagrant $*'
+alias vd='vagrant destroy --force'
+alias vgs='vagrant global-status'
+alias vgsp='vagrant global-status --prune'
+alias vh='vagrant halt'
+alias vssh='vagrant ssh'
+alias vsshc='vagrant ssh-config'
+alias vu='vagrant up'
+alias vbox='vagrant box'
+alias vsus='vagrant suspend'
+alias vres='vagrant resume'
+alias vstat='vagrant status'
+alias vsnap='vagrant snapshot'
+alias vrel='vagrant reload'
+alias vp='vagrant provision'

@@ -2,7 +2,7 @@
 export PATH=$PATH:.
 #export PATH=$PATH:~/.dotfiles/scripts
 
-# Brew
+#Brew
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 
@@ -15,7 +15,6 @@ export PATH=/usr/local/bin:$PATH
 # The next line enables shell command completion for gcloud.
 #source "/Users/$(whoami)/Downloads/google-cloud-sdk/completion.zsh.inc"
 
-
 # Brew LLVM using clang or gcc PATH
 #export PATH="/usr/local/opt/llvm/bin:$PATH"
 
@@ -26,3 +25,20 @@ export PATH=/usr/local/bin:$PATH
 # flags for compiling and linking
 #LDFLAGS += -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib
 #CPPFLAGS += -I/usr/local/opt/llvm/include -I/usr/local/opt/llvm/include/c++/v1/
+
+# Transmission
+export TRANSMISSION='/Volumes/WD-Shares/Transmission'
+
+# GOPATH
+# mkdir $CODE/Go
+# mkdir -p $GOPATH/src/github.com/user
+#export GOPATH=$DEV/Go
+#export PATH=$PATH:$GOPATH/bin
+
+
+export VAGRANT_VMWARE_FUSION_APP="/Applications/VMware Fusion.app"
+export VAGRANT_HOME="$HOME/.vagrant.d"
+
+
+export ANDROID_HOME="/usr/local/opt/android-sdk"
+export PATH=${PATH}:${ANDROID_HOME}/tools

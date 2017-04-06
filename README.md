@@ -78,12 +78,12 @@ To launch fullscreen, hit `Command + Enter` in iTerm, then use `Command + d` and
 
 > Note: I recommend forking this repo in case you don't like anything I do and want to set your own preferences (and pull request them!)
 
-> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: https://github.com/baseboxorg/dotfiles-automantic/blob/master/install.sh#L275-L1038
+> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: https://github.com/atomantic/dotfiles/blob/master/install.sh#L275-L1038
 > It's always a good idea to review arbitrary code from the internet before running it on your machine with sudo power!
 > You are responsible for everything this script does to your machine (see LICENSE)
 
 ```bash
-git clone --recurse-submodules https://github.com/baseboxorg/dotfiles-automantic ~/.dotfiles
+git clone --recurse-submodules https://github.com/atomantic/dotfiles ~/.dotfiles
 cd ~/.dotfiles;
 # run this using terminal (not iTerm, lest iTerm settings get discarded on exit)
 ./install.sh

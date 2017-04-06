@@ -19,6 +19,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+.secrets
+
 ############
 # Security #
 ############
@@ -28,11 +30,6 @@ id_rsa
 # Tooling #
 ###########
 .vagrant/
-
-########
-# Node #
-########
-.secret
 
 #######
 # VIM #
